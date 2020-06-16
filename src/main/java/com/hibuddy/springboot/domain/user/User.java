@@ -15,30 +15,23 @@ import javax.persistence.*;
 public class User {
     @Id
     private String userId;
-
     @Column
     private String name;
-
     @Column
     private String sex;
-
     @Column
     private int age;
-
     @Column
     private String nation;
-
     @Column
     private String nativeLanguage;
-
     @Column
     private String secondLanguage;
-
     @Column
     private String picture;
 
     @Enumerated(EnumType.STRING) //JPA로 DB에 저장할 때 Enum 값을 문자열로 저장할 수 있도록 선언.(의미를 파악하기 위해)
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Role role;
 
     @Builder// 생성자 대신 사용, 어느 필드에 어떤 값을 채워야 하는지 명확하게 인지 가능. builder().title(title) 이런 식
