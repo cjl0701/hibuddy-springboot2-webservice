@@ -39,6 +39,7 @@ public class UserRepositoryTest {
             User user = new User();
             user.setUserId("cjl");
             user.setName("최재량");
+            user.setRole(Role.USER);
 
             User newUser = userRepository.save(user);
             assertThat(newUser).isNotNull();

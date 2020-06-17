@@ -22,11 +22,11 @@ public class UserHobbyRepositoryTest {
     @Autowired
     UserRepository userRepository;
 
-    @After //Junit에서 단위 테스트가 끝날 때마다 수행되는 메소드를 지정. 보통 여러 테스트를 수행할 때 다음 테스트 영향 주지 않기 위해
+    /*@After //Junit에서 단위 테스트가 끝날 때마다 수행되는 메소드를 지정. 보통 여러 테스트를 수행할 때 다음 테스트 영향 주지 않기 위해
     public void cleanup() {
         userHobbyRepository.deleteById("testId");//user_hobby table에서 먼저 삭제해야 함!
         userRepository.deleteById("testId");
-    }
+    }*/
 
     @Test
     public void 불러오기() {
