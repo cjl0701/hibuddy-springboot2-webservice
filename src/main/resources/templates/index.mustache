@@ -1,25 +1,46 @@
 {{>layout/header}}
 
-<h1>Hi Buddy!</h1>
+<h1>Welcome to HiBuddy!</h1>
 <div class="col-md-12">
     <!--로그인 기능 영역-->
     <div class="row">
         <div class="col-md-6">
-            {{#userName}}<!--머스테치는 if문 제공x, true/false 여부만 판단. 있다면 userName 노출됨!-->
-                Logged in as: <span id="user">{{userName}}</span><br>
-                <a href="/posts/save" role="button" class="btn btn-primary">회원가입/정보수정</a>
+            {{#user}}<!--머스테치는 if문 제공x, true/false 여부만 판단. 있다면 userName 노출됨!-->
+                Logged in as: <span id="user">{{name}}</span><br>
+                {{#guest}}<!--권한이 guest인 경우-->
+                    <a href="/user/join/{{user.email}}" role="button" class="btn btn-primary">회원 가입</a>
+                {{/guest}}
+                {{^guest}}<!--권한이 user인 경우-->
+                    <a href="/user/update/{{user.email}}" role="button" class="btn btn-primary">회원 정보 수정</a>
+                {{/guest}}
                 <!--스프링 시큐리티에서 제공하는 로그아웃 URL. 별도로 컨트롤러 만들 필요 없음!-->
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}<!--머스테치에서 해당 값이 존재하지 않는 경우에는 ^을 사용. userName이 없다면 로그인 버튼 노출-->
+            {{/user}}
+            {{^user}}<!--머스테치에서 해당 값이 존재하지 않는 경우에는 ^을 사용. userName이 없다면 로그인 버튼 노출-->
                 <!--스프링 시큐리티에서 기본적으로 제공하는 로그인 URL. 컨트롤러 만들 필요 없음!-->
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
                 <!--네이버 로그인 URL은 application-oauth.properties에 등록한 redirect-uri 값에 맞춰 자동 등록 됨-->
                 <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/userName}}
+            {{/user}}
         </div>
     </div>
     <br>
+    <div>
+        <p>
+            <H2>HiBuddy를 통해 같은 관심사를 가진 외국인 친구들을 사귀세요!</H2>
+        </p>
+    </div>
+
+    <!--친구 사귀기 영역-->
+    <div>
+        <a href="/buddy/make" role="button" class="btn btn-primary">친구 사귀기</a>
+    </div>
+    <br>
+
+    <!--친구 조회 영역-->
+    <div>
+        <a href="/buddy/list" role="button" class="btn btn-primary">친구 목록</a>
+    </div>
 </div>
 
 {{>layout/footer}}

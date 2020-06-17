@@ -2,6 +2,7 @@ package com.hibuddy.springboot.web;
 
 import com.hibuddy.springboot.config.auth.LoginUser;
 import com.hibuddy.springboot.config.auth.dto.SessionUser;
+import com.hibuddy.springboot.domain.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,21 +24,30 @@ public class IndexController {
         //(before)SessionUser user = (SessionUser)httpSession.getAttribute("user");
 
         //index.mustache에서 userName을 사용할 수 있게 model에 저장
-        if(user!=null)
-            model.addAttribute("userName", user.getName());
+        if(user!=null) {
+            model.addAttribute("user", user);
+
+            if(user.getRole().equals(Role.GUEST)) {
+                model.addAttribute("guest", "guest");
+            }
+        }
         return "index"; //머스테치 스타터->~/templates/index.mustache로 전환해줌
     }
 
-//    @GetMapping("posts/save")
-//    public String postsSave(){
-//        return "posts-save";
-//    }
-//    /*
-//    GetMapping과 같이 Controller에서 URL 매핑을 담당하는 어노테이션에 명확하게 주소가 없으면
-//    Controller에 매핑되지 않는 요청은 모두 해당 메소드로갑니다.
-//    index.js 요청 역시 Controller가 매핑된 요청이 아니니 자연스레 여기로 요청이 옴..
-//     */
-//
+    @GetMapping("/user/join/{email}")
+    public String userJoin(){
+        return "user-join";
+    }
+    @GetMapping("/user/update/{email}")
+    public String userUpdate(){
+        return "user-update";
+    }
+    /*
+    GetMapping과 같이 Controller에서 URL 매핑을 담당하는 어노테이션에 명확하게 주소가 없으면
+    Controller에 매핑되지 않는 요청은 모두 해당 메소드로 간다.
+    index.js 요청 역시 Controller가 매핑된 요청이 아니니 자연스레 여기로 요청이 옴..
+     */
+
 //    @GetMapping("/posts/update/{id}")
 //    public String postsUpdate(@PathVariable Long id, Model model) {
 //        PostsResponseDto dto = postsService.findById(id);
@@ -45,6 +55,7 @@ public class IndexController {
 //
 //        return "posts-update";
 //    }
+
 
 }
 

@@ -1,5 +1,6 @@
 package com.hibuddy.springboot.config.auth.dto;
 
+import com.hibuddy.springboot.domain.user.Role;
 import com.hibuddy.springboot.domain.user.User;
 import lombok.Getter;
 
@@ -11,11 +12,13 @@ import java.io.Serializable;
 public class SessionUser implements Serializable {//직렬화 기능
     private String name;
     private String email;
+    private Role role;
     //private String picture;
 
     public SessionUser(User user){
         this.name=user.getName();
         this.email=user.getEmail();
+        this.role=user.getRole();
         //this.picture=user.getPicture();
     }
 }
