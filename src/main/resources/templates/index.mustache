@@ -1,0 +1,25 @@
+{{>layout/header}}
+
+<h1>Hi Buddy!</h1>
+<div class="col-md-12">
+    <!--로그인 기능 영역-->
+    <div class="row">
+        <div class="col-md-6">
+            {{#userName}}<!--머스테치는 if문 제공x, true/false 여부만 판단. 있다면 userName 노출됨!-->
+                Logged in as: <span id="user">{{userName}}</span><br>
+                <a href="/posts/save" role="button" class="btn btn-primary">회원가입/정보수정</a>
+                <!--스프링 시큐리티에서 제공하는 로그아웃 URL. 별도로 컨트롤러 만들 필요 없음!-->
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            {{^userName}}<!--머스테치에서 해당 값이 존재하지 않는 경우에는 ^을 사용. userName이 없다면 로그인 버튼 노출-->
+                <!--스프링 시큐리티에서 기본적으로 제공하는 로그인 URL. 컨트롤러 만들 필요 없음!-->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                <!--네이버 로그인 URL은 application-oauth.properties에 등록한 redirect-uri 값에 맞춰 자동 등록 됨-->
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+            {{/userName}}
+        </div>
+    </div>
+    <br>
+</div>
+
+{{>layout/footer}}

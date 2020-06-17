@@ -54,7 +54,7 @@ public class UserHobbyRepositoryTest {
         String hobby = hobbyListRepository.findAll().get(0).getHobby();//animation
 
         userRepository.save(User.builder()
-                .user_id(userId)
+                .userId(userId)
                 .role(Role.GUEST)
                 .build());
 
