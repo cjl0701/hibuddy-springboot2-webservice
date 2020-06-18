@@ -15,10 +15,11 @@ public class SessionUser implements Serializable {//직렬화 기능
     private Role role;
     //private String picture;
 
-    public SessionUser(User user){
-        this.name=user.getName();
-        this.email=user.getEmail();
-        this.role=user.getRole();
+    public SessionUser(User user) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.role = user.getRole();
         //this.picture=user.getPicture();
     }
+
 }

@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -43,10 +44,10 @@ public class UserRepositoryTest {
 
             User newUser = userRepository.save(user);
             assertThat(newUser).isNotNull();
-            User existingUser = userRepository.findByUserId(newUser.getUserId());
+            Optional<User> existingUser = userRepository.findByUserId(newUser.getUserId());
             assertThat(existingUser).isNotNull();
 
-            User nonExistingUser = userRepository.findByUserId("non");
+            Optional<User> nonExistingUser = userRepository.findByUserId("non");
             assertThat(nonExistingUser).isNull();
         }
     }
