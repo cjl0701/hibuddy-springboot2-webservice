@@ -14,12 +14,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable().headers().frameOptions().disable() //ajax, h2-console 화면을 사용하기 위해 해당 옵션들을 disalbe함
+                .and()
                 .authorizeRequests() //URL별 권한 관리를 설정하는 옵션의 시작점
-                //antMatchers:권한 관리 대상을 지정하는 옵션
+                  //antMatchers:권한 관리 대상을 지정하는 옵션
                 .antMatchers("/", "/css/**", "/images/**", "/js/**").permitAll()//전체열람권한
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name()) //USER 권한을 가진 사람만 열람 가능
-                //anyRequest:설정된 값들 이외 나머지 URL
-                .anyRequest().authenticated() //나머지 URL들은 모두 인증된 사용자들에게만 허용
+                .antMatchers("/api/buddy/**").hasRole(Role.USER.name()) //USER 권한을 가진 사람만 열람 가능
+                  //anyRequest:설정된 값들 이외 나머지 URL
+                .anyRequest().authenticated() //나머지 URL들은 모두 인증된(로그인된) 사용자들에게만 허용
                 .and()
                 .logout() //로그아웃 기능에 대한 여러 설정의 진입점
                 .logoutSuccessUrl("/")

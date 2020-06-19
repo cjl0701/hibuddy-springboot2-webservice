@@ -1,4 +1,4 @@
-package com.hibuddy.springboot.domain.hobby;
+package com.hibuddy.springboot.domain.user;
 
 import lombok.Builder;
 import lombok.Getter;

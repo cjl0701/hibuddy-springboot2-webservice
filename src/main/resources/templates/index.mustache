@@ -11,8 +11,8 @@
                     <a href="/user/join" role="button" class="btn btn-info">회원 가입</a>
                 {{/guest}}
                 {{^guest}}<!--권한이 user인 경우-->
-                    Logged in as: <span id="user">{{user.name}}</span><br>
-                    <a href="/user/update/{{user.email}}" role="button" class="btn btn-info">회원 정보 수정</a>
+                    Logged in as: <span id="user">{{user.userId}}</span><br>
+                    <a href="/user/update" role="button" class="btn btn-info">회원 정보 수정</a>
                 {{/guest}}
                 <!--스프링 시큐리티에서 제공하는 로그아웃 URL. 별도로 컨트롤러 만들 필요 없음!-->
                 <a href="/logout" class="btn btn-dark" role="button">Logout</a>

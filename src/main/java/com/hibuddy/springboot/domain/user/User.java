@@ -1,5 +1,6 @@
 package com.hibuddy.springboot.domain.user;
 
+import com.hibuddy.springboot.web.dto.UserRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,9 +54,20 @@ public class User {
 
     //for JPA의 영속성 컨텍스트. 트랜잭션 과정에서 DB에서 데이터를 가져오면, 트랙잭션이 끝나는 시점에 해당 테이블에 변경분을 반영
     //즉, Entity 객체의 값만 변경하면 별로도 Update 쿼리를 날리지 않아도 알아서 해줌.
-    public User update(String name) {
-        this.name = name;
-
+    public User update(User entity) {
+        this.userId=entity.getUserId();
+        this.role=entity.getRole();
+        this.sex=entity.getSex();
+        this.age=entity.getAge();
+        this.nation=entity.getNation();
+        this.nativeLanguage=entity.getNativeLanguage();
+        this.secondLanguage=entity.getSecondLanguage();
+        this.phone=entity.getPhone();
+        return this;
+    }
+    //for JPA의 영속성 컨텍스트
+    public User update(String name){
+        this.name=name;
         return this;
     }
 

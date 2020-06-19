@@ -7,6 +7,7 @@ import com.hibuddy.springboot.domain.hobby.HobbyListRepository;
 import com.hibuddy.springboot.domain.user.Role;
 import com.hibuddy.springboot.domain.user.UserRepository;
 import com.hibuddy.springboot.service.hobby.HobbyListService;
+import com.hibuddy.springboot.web.dto.UserRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,8 +46,10 @@ public class IndexController {
         return "user-join";
     }
 
-    @GetMapping("/user/update/{email}")
-    public String userUpdate(){
+    @GetMapping("/user/update")
+    public String userUpdate(Model model, UserRequestDto user){
+        model.addAttribute("user", user);
+        model.addAttribute("hobbyList", hobbyListService.findAll());
         return "user-update";
     }
     /*

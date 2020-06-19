@@ -1,9 +1,5 @@
 package com.hibuddy.springboot.domain.buddy;
 
-import com.hibuddy.springboot.domain.hobby.UserHobby;
-import com.hibuddy.springboot.domain.user.Role;
-import com.hibuddy.springboot.domain.user.User;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

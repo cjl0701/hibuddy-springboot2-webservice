@@ -1,0 +1,108 @@
+{{>layout/header}}
+
+<h1>Welcome to HiBuddy!</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>회원 가입</h4>
+            Logged in as: <span id="user">{{user.name}}(guest)</span><br>
+            <a href="/" role="button" class="btn btn-outline-info">메인 페이지로 이동</a>
+            <a href="/logout" class="btn btn-dark" role="button">Logout</a>
+        </div>
+    </div>
+</div>
+<br><br>
+<!--회원 정보 입력 영역-->
+<div class="col-md-4">
+    <p>
+    <H3>회원 정보 입력</H3>
+    </p>
+    <form>
+        <div class="form-group">
+            <label for="userId">Id</label>
+            <input type="text" class="form-control mb-2" id="userId" value="{{user.userId}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" value="{{user.name}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="sex">Sex</label>
+            <select id="sex" class="form-control">
+                <option selected>{{user.sex}}</option>
+                <option>Woman</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" class="form-control" id="age" value="{{user.age}}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" value="{{user.email}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone" value="{{user.phone}}">
+        </div>
+        <div class="form-group">
+            <label for="nation">Nation</label>
+            <input type="text" class="form-control" id="nation" value="{{user.nation}}">
+        </div>
+        <div class="form-group">
+            <label for="nativeLang">Native Language</label>
+            <select id="nativeLang" class="form-control">
+                <option selected>{{user.nativeLanguage}}</option>
+                <option>English</option>
+                <option>korean</option>
+                <option>Chinese</option>
+                <option>Japanese</option>
+                <option>French</option>
+                <option>German</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="secondaryLang">Secondary Language</label>
+            <select id="secondaryLang" class="form-control">
+                <option selected>{{user.secondLanguage}}</option>
+                <option>English</option>
+                <option>korean</option>
+                <option>Chinese</option>
+                <option>Japanese</option>
+                <option>French</option>
+                <option>German</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="hobby1">Hobby 1</label>
+            <select id="hobby1" class="form-control">
+                <option selected>{{user.hobby1}}</option>
+                {{#hobbyList}}
+                    <option>{{hobby}}</option>
+                {{/hobbyList}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="hobby2">Hobby 2</label>
+            <select id="hobby2" class="form-control">
+                <option selected>{{user.hobby2}}</option>
+                {{#hobbyList}}
+                    <option>{{hobby}}</option>
+                {{/hobbyList}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="hobby3">Hobby 3</label>
+            <select id="hobby3" class="form-control">
+                <option selected>{{user.hobby3}}</option>
+                {{#hobbyList}}
+                    <option>{{hobby}}</option>
+                {{/hobbyList}}
+            </select>
+        </div>
+    </form>
+    <button type="button" class="btn btn-primary" id="btn-update">수정</button>
+    <a href="/" role="button" class="btn btn-secondary">취소</a>
+</div>
+
+{{>layout/footer}}
