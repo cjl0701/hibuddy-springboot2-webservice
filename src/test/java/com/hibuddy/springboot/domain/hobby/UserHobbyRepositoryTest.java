@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,14 +37,12 @@ public class UserHobbyRepositoryTest {
         String hobby3 = "music";
 
         //when
-        List<UserHobby> uhList = userHobbyRepository.findAll();
+         Optional<User> byUserId = userRepository.findByUserId(userId);
 
         //then
-        UserHobby userHobby = uhList.get(0);
-        assertThat(userHobby.getUserId()).isEqualTo(userId);
-        assertThat(userHobby.getHobby1()).isEqualTo(hobby1);
-        assertThat(userHobby.getHobby2()).isEqualTo(hobby2);
-        assertThat(userHobby.getHobby3()).isEqualTo(hobby3);
+        User user = byUserId.get();
+        assertThat(user.getUserId()).isEqualTo(userId);
+
     }
 
     @Test

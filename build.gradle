@@ -1,13 +1,16 @@
 buildscript {// 플러그인 의존성 관리를 위한 설정
     ext{ //전역변수 설정
         springBootVersion = '2.1.9.RELEASE'
+        querydslPluginVersion = '1.0.10' // 플러그인 버전
     }
     repositories { //각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을지 정함
         mavenCentral() // 라이브러리 업로드 힘듬
         jcenter() // 라이브러리 업로드 간단. 여기 업로드하면 mavenCentral 에도 자동 업로드됨
+        maven { url "https://plugins.gradle.org/m2/" } // 플러그인 저장소
     }
     dependencies { // 개발에 필요한 의존성들을 선언
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") // 이 플러그인의 이 버전을 의존성으로 받겠다.
+        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}") // querydsl 플러그인 의존성 등록
     }
 }
 
@@ -19,7 +22,6 @@ apply plugin: 'io.spring.dependency-management'
 
 group 'com.sb.prac'
 version '1.0-SNAPSHOT'
-
 sourceCompatibility = 1.8
 
 repositories {
@@ -33,8 +35,27 @@ dependencies {
     compile('mysql:mysql-connector-java')
     compile('org.springframework.boot:spring-boot-starter-mustache')
     compile('org.springframework.boot:spring-boot-starter-oauth2-client') //클라이언트 입장에서 소셜 기능 구현 시 필요한 의존성
+    compile("com.querydsl:querydsl-jpa") // querydsl
+    compile("com.querydsl:querydsl-apt") // querydsl
     //compile('org.springframework.session:spring-session-jdbc') //데이터베이스를 세션 저장소로 사용하기 위해
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('com.h2database:h2') // 인메모리 관계형 DB, 재시작할 때마다 초기화 -> 테스트 용도
     //testCompile("org.springframework.security:spring-security-test") //스프링 시큐리티 테스트를 위한 도구 지원
+}
+// querydsl 적용
+apply plugin: "com.ewerk.gradle.plugins.querydsl" // Plugin 적용
+def querydslSrcDir = 'src/main/generated' // QClass 생성 위치
+
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslSrcDir
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', querydslSrcDir]
+        }
+    }
 }
