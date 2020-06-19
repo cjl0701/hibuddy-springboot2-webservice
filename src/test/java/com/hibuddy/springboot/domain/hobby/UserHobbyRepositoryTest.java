@@ -66,9 +66,12 @@ public class UserHobbyRepositoryTest {
         List<UserHobby> uhList = userHobbyRepository.findAll();
 
         //then
-        UserHobby userHobby = uhList.get(6);
+        UserHobby userHobby = uhList.get(7);
         assertThat(userHobby.getUserId()).isEqualTo(userId);
         assertThat(userHobby.getHobby1()).isEqualTo(hobby);
     }
+    @Test
+    public void User_UserHobby_조인_테스트() {
 
+    }
 }

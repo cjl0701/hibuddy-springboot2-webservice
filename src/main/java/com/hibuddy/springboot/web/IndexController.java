@@ -8,6 +8,7 @@ import com.hibuddy.springboot.domain.user.Role;
 import com.hibuddy.springboot.domain.user.UserRepository;
 import com.hibuddy.springboot.service.hobby.HobbyListService;
 import com.hibuddy.springboot.web.dto.UserRequestDto;
+import com.hibuddy.springboot.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +48,8 @@ public class IndexController {
     }
 
     @GetMapping("/user/update")
-    public String userUpdate(Model model, UserRequestDto user){
+    public String userUpdate(Model model, @LoginUser SessionUser user){
+        UserResponseDto userResponseDto;
         model.addAttribute("user", user);
         model.addAttribute("hobbyList", hobbyListService.findAll());
         return "user-update";
