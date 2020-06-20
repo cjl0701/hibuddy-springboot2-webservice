@@ -40,12 +40,15 @@ public class UserApiController {
         // @RequestBody, @ResponseBody 어노테이션을 사용하면 컨트롤러에서 JSON 데이터를 주고받을 수 있다.
         return userService.save(requestDto);
     }
-//
+
 //    @PutMapping("/api/v1/posts/{id}") //수정(U)
 //    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
 //        return postsService.update(id, requestDto);
 //    }
-//
+    @PutMapping("/api/user/update/{userId}")//수정(U)
+    public String update(@PathVariable String userId, @RequestBody UserRequestDto userRequestDto){
+        return userService.update(userId, userRequestDto);
+    }
 //    @DeleteMapping("/api/v1/posts/{id}") //삭제(D)
 //    public Long delete(@PathVariable Long id){
 //        postsService.delete(id);

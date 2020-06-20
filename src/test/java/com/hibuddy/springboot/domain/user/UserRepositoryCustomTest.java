@@ -1,5 +1,6 @@
 package com.hibuddy.springboot.domain.user;
 
+import com.hibuddy.springboot.web.dto.SameHobbyBuddyDto;
 import com.hibuddy.springboot.web.dto.UserResponseDto;
 import org.junit.After;
 import org.junit.Test;
@@ -19,6 +20,9 @@ public class UserRepositoryCustomTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserHobbyRepository userHobbyRepository;
 
     private String userId;
 
@@ -65,5 +69,22 @@ public class UserRepositoryCustomTest {
         assertThat(userResponseDto.get(0).getHobby1(), is(hobby1));
         assertThat(userResponseDto.get(0).getHobby2(), is(hobby2));
         assertThat(userResponseDto.get(0).getHobby3(), is(hobby3));
+    }
+    @Test
+    public void 동적쿼리_개선(){
+        String userId="";
+        List<UserResponseDto> userResponseDto = userRepository.findTotalInfo(userId);
+        assertThat(userResponseDto.size(), is(8));
+        assertThat(userResponseDto.get(0).getUserId(), is("by28"));
+        assertThat(userResponseDto.get(1).getUserId(), is("choi0701"));
+    }
+
+    @Test
+    public void in쿼리(){
+        UserHobby userHobby = userHobbyRepository.findByUserId("harry")
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다. id=" + userId));
+        List<SameHobbyBuddyDto> byHobby = userRepository.findByHobby(userHobby.getHobby1(), userHobby.getHobby2(), userHobby.getHobby3());
+        for(SameHobbyBuddyDto dto: byHobby)
+            System.out.println(dto.getUserId());
     }
 }

@@ -23,6 +23,28 @@ public class BuddyListRepositoryTest {
 
     @Test
     public void 요청목록에서_수락하여_친구목록에_추가() {
+        buddyListRepository.save(BuddyList.builder()
+                .userId("choi0701")
+                .buddyId("sense")
+                .build());
+        buddyRequestRepository.save(BuddyRequest.builder()
+                .userId("by28")
+                .requestedId("choi0701")
+                .build());
+        buddyRequestRepository.save(BuddyRequest.builder()
+                .userId("hanna")
+                .requestedId("choi0701")
+                .build());
+        buddyRequestRepository.save(BuddyRequest.builder()
+                .userId("momo")
+                .requestedId("choi0701")
+                .build());
+        buddyRequestRepository.save(BuddyRequest.builder()
+                .userId("james")
+                .requestedId("choi0701")
+                .build());
+        /*
+
         //given
         List<BuddyRequest> reqList = buddyRequestRepository.findAll();
         BuddyRequest bReq = reqList.get(0);
@@ -46,5 +68,6 @@ public class BuddyListRepositoryTest {
         buddyRequestRepository.deleteById(no);//요청 목록에서 삭제
         Optional<BuddyRequest> buddyRequest = buddyRequestRepository.findById(no);
         assertThat(buddyRequest).isEmpty();
+*/
     }
 }

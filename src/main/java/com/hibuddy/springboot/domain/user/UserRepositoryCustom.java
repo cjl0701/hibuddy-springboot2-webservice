@@ -1,6 +1,7 @@
 package com.hibuddy.springboot.domain.user;
 
 
+import com.hibuddy.springboot.web.dto.SameHobbyBuddyDto;
 import com.hibuddy.springboot.web.dto.UserResponseDto;
 
 import java.util.List;
@@ -10,6 +11,9 @@ import java.util.List;
 //이 인터페이스를 구현하면 UserRepository에서 UserRepositoryImpl의 코드도 사용할 수 있게 됨
 public interface UserRepositoryCustom {
     List<User> findByUserIdToList(String userId);
-
+    // join, dynamic query 적용
     List<UserResponseDto> findTotalInfo(String userId);
+
+    // join, subquery 적용
+    List<SameHobbyBuddyDto> findByHobby(String hobby1, String hobby2,String hobby3);
 }

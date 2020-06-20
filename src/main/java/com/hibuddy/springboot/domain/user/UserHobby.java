@@ -29,4 +29,12 @@ public class UserHobby {
         this.hobby2 = hobby2;
         this.hobby3 = hobby3;
     }
+    //for JPA의 영속성 컨텍스트. 트랜잭션 과정에서 DB에서 데이터를 가져오면, 트랙잭션이 끝나는 시점에 해당 테이블에 변경분을 반영
+    //즉, Entity 객체의 값만 변경하면 별로도 Update 쿼리를 날리지 않아도 알아서 해줌.
+    public UserHobby update(UserHobby entity) {
+        this.hobby1=entity.hobby1;
+        this.hobby2=entity.hobby2;
+        this.hobby3=entity.hobby3;
+        return this;
+    }
 }

@@ -10,7 +10,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, String>, UserRepositoryCustom {
     Optional<User> findByEmail(String email); //email을 혼해 기회원인지 판단하기 위한 메소드
     Optional<User> findByUserId(String userId);
-    //Optional<UserResponseDto> joinUserAndHobby(String user_id);
 
     @Transactional
     void deleteByUserId(String userId);

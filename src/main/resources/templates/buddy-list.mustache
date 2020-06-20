@@ -1,0 +1,94 @@
+{{>layout/header}}
+
+<h1>Welcome to HiBuddy!</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>내 친구들 목록</h4>
+            Logged in as: <span id="user">{{user.userId}}</span><br>
+            <a href="/" role="button" class="btn btn-outline-info">메인 페이지로 이동</a>
+            <a href="/logout" class="btn btn-dark" role="button">Logout</a>
+        </div>
+    </div>
+</div>
+<br><br>
+<!--친구 정보 출력 영역, 친구 요청 버튼-->
+<div>
+    <p>
+    <H3>내 친구들</H3>
+    </p>
+    <!--목록 출력 영역-->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>이름</th>
+            <th>성별</th>
+            <th>나이</th>
+            <th>이메일</th>
+            <th>전화번호</th>
+            <th>국가</th>
+            <th>모국어</th>
+            <th>제2 외국어</th>
+            <th>취미 1</th>
+            <th>취미 2</th>
+            <th>취미 3</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#buddies}} <!--buddies라는 List를 순회. Java의 for문과 동일-->
+        <tr>
+            <td>{{name}}</td><!--List에서 뽑아낸 객체의 필드를 사용-->
+            <td>{{sex}}</td>
+            <td>{{age}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td>{{nation}}</td>
+            <td>{{nativeLanguage}}</td>
+            <td>{{secondLanguage}}</td>
+            <td>{{hobby1}}</td>
+            <td>{{hobby2}}</td>
+            <td>{{hobby3}}</td>
+        </tr>
+        {{/buddies}}
+        </tbody>
+    </table>
+</div>
+<div>
+    <p>
+    <H3>내게 온 친구 요청</H3>
+    </p>
+    <!--목록 출력 영역-->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>아이디</th>
+            <th>성별</th>
+            <th>나이</th>
+            <th>국가</th>
+            <th>모국어</th>
+            <th>제2 외국어</th>
+            <th>취미 1</th>
+            <th>취미 2</th>
+            <th>취미 3</th>
+            <th>친구 수락</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#requests}} <!--buddies라는 List를 순회. Java의 for문과 동일-->
+        <tr>
+            <td>{{userId}}</td><!--List에서 뽑아낸 객체의 필드를 사용-->
+            <td>{{sex}}</td>
+            <td>{{age}}</td>
+            <td>{{nation}}</td>
+            <td>{{nativeLanguage}}</td>
+            <td>{{secondLanguage}}</td>
+            <td>{{hobby1}}</td>
+            <td>{{hobby2}}</td>
+            <td>{{hobby3}}</td>
+            <td><button type="button" class="btn btn-primary" name="btn-accept" id="{{userId}}" value="{{userId}}">요청 수락</button></td>
+        </tr>
+        {{/requests}}
+        </tbody>
+    </table>
+</div>
+{{>layout/footer}}
