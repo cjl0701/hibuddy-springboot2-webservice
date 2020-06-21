@@ -15,9 +15,4 @@ public interface BuddyRequestRepository extends JpaRepository<BuddyRequest, Long
 
     @Query(value="select user_id from buddy_request where requested_id=:user", nativeQuery=true)
     List<String> findByUserId(@Param("user")String userId);
-
-    //@Query(value = "select * from table_name where case_1=:case_1 and date='2017-04-04' ", nativeQuery=true)
-    //List<TableName> findSomeCase(@Param("case_1") String case_1);
-
-
 }

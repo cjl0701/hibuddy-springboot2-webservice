@@ -65,23 +65,4 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                         .or(userHobby.hobby3.in(hobby1, hobby2, hobby3)))
                 .fetch().stream().distinct().collect(Collectors.toList());//중복 제거
     }
-
-    /*private BooleanExpression inHobby(String hobby) {
-        if (StringUtils.isEmpty(hobby))
-            return null;
-        return userHobby.hobby1.in(hobby,"music","dance");
-    }*/
-/*
-    @Override
-    public List<SameHobbyBuddyDto> findByHobbies(UserHobby hobbies) {
-        return queryFactory
-                .select(Projections.fields(UserResponseDto.class,
-                        user.userId, user.name, user.email, user.sex, user.age, user.phone, user.nation, user.nativeLanguage, user.secondLanguage,
-                        userHobby.hobby1, userHobby.hobby2, userHobby.hobby3))
-                .from(user)
-                .join(userHobby).on(user.userId.eq(userHobby.userId))
-                .where(list(userHobby.hobby1, userHobby.hobby2, userHobby.hobby3).in("movie","music"))
-                .fetch().stream().distinct().collect(Collectors.toList());
-    }*/
-
 }

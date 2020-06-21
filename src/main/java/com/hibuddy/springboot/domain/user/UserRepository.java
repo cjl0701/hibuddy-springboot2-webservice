@@ -1,7 +1,6 @@
 package com.hibuddy.springboot.domain.user;
 // User의 CRUD를 책임지는 DAO
 
-import com.hibuddy.springboot.web.dto.UserResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

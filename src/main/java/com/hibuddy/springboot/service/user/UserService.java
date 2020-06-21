@@ -30,9 +30,6 @@ public class UserService {
 
     @Transactional
     public String save(UserRequestDto requestDto) { //비즈니스 로직 처리
-//        User user = userRepository.findByEmail(requestDto.getEmail())
-//                .orElseThrow(() -> new IllegalArgumentException("해당 이용자가 없습니다. email=" + requestDto.getEmail()));
-//        user.update(requestDto.toUserEntity());
         userRepository.save(requestDto.toUserEntity());
         return userHobbyRepository.save(requestDto.toHobbyEntity()).getUserId();
     }
@@ -62,7 +59,8 @@ public class UserService {
         return userRepository.findTotalInfo(userId).get(0);
     }
 
-    @Transactional(readOnly = true) //트랜잭션 범위는 유지하되, 조회 기능만 남겨두어 조회 속도가 개선됨.
+    //user와 취미가 겹치는 사람 찾기
+    @Transactional(readOnly = true)
     public List<SameHobbyBuddyDto> findByHobby(String userId) {
         UserHobby hobbies = userHobbyRepository.findByUserId(userId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다. id=" + userId));
@@ -73,8 +71,12 @@ public class UserService {
         Iterator<SameHobbyBuddyDto> iter = dtoList.iterator();
         while (iter.hasNext()) {
             String dtoId = iter.next().getUserId();
+            if(dtoId.equals(userId)){
+                iter.remove();
+                continue;
+            }
             for (BuddyList b : buddyLists) {
-                if (dtoId.equals(b.getBuddyId()) || dtoId.equals(b.getUserId())){
+                if (dtoId.equals(b.getBuddyId())){
                     iter.remove();
                     break;
                 }

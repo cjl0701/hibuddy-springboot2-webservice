@@ -24,6 +24,4 @@ public class BuddyApiController {
     public String buddyAccept(@RequestBody String buddyId, @LoginUser SessionUser sessionUser) {
         return buddyService.accept(sessionUser.getUserId(), buddyId);
     }
-
-
 }
