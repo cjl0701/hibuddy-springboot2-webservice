@@ -5,7 +5,6 @@ import com.hibuddy.springboot.web.dto.UserRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-
 @RequiredArgsConstructor
 @RestController //json 형태로 반환
 public class UserApiController {

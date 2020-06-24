@@ -38,6 +38,7 @@ public class BuddyService {
         return userId;
     }
 
+    //친구 리스트 가져오기
     public List<UserResponseDto> findBuddies(String userId) {
         List<BuddyList> buddyList = buddyListRepository.findAllByUserId(userId);
         List<UserResponseDto> originDtos = userRepository.findTotalInfo("");//모든 회원 정보
@@ -50,14 +51,16 @@ public class BuddyService {
         return userResponseDtos;
     }
 
+    //친구 요청 리스트 가져오기
     public List<UserResponseDto> findRequests(String userId) {
         List<String> requestIds = buddyRequestRepository.findByUserId(userId);
         List<UserResponseDto> userResponseDtos = new ArrayList<>();
-        for (String uId : requestIds)
-            userResponseDtos.add(userRepository.findTotalInfo(uId).get(0));
+        for (String reqId : requestIds)
+            userResponseDtos.add(userRepository.findTotalInfo(reqId).get(0));
         return userResponseDtos;
     }
 
+    //친구 요청 수락 - 요청 리스트에서는 제거되고 친구 리스트에는 추가됨.
     public String accept(String userId, String buddyId) {
         BuddyRequest buddyRequest = buddyRequestRepository.findByUserAndBuddyId(buddyId, userId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 요청이 없습니다." + userId+"-"+buddyId));

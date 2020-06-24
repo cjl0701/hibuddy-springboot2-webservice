@@ -44,7 +44,6 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                 .where(eqUserId(uId))
                 .fetch();
     }
-
     //이름이 주어지지 않으면 전체 회원 정보를 가져온다.
     private BooleanExpression eqUserId(String uId) {
         if (StringUtils.isEmpty(uId))

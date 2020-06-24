@@ -11,8 +11,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application { // 프로젝트의 메인 클래스
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args); // 내장 WAS 실행
-        //SpringApplication application = new SpringApplication(Application.class);
-        //application.setWebApplicationType(WebApplicationType.NONE);
-        //application.run(args);
     }
 }
