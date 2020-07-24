@@ -36,6 +36,7 @@ public class IndexController {
         //index.mustache에서 userName을 사용할 수 있게 model에 저장
         if (sessionUser != null) {
             model.addAttribute("user", sessionUser);
+            System.out.println(sessionUser.getName()+"/"+sessionUser.getEmail()+"/"+sessionUser.getUserId());
             if (sessionUser.getRole().equals(Role.GUEST))
                 model.addAttribute("guest", "guest");
         }
