@@ -32,11 +32,11 @@ public class IndexController {
     private final BuddyService buddyService;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) { //Model: 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장.
+    public String index(Model model, @LoginUser SessionUser sessionUser) { //Model: 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장.
         //index.mustache에서 userName을 사용할 수 있게 model에 저장
-        if (user != null) {
-            model.addAttribute("user", user);
-            if (user.getRole().equals(Role.GUEST))
+        if (sessionUser != null) {
+            model.addAttribute("user", sessionUser);
+            if (sessionUser.getRole().equals(Role.GUEST))
                 model.addAttribute("guest", "guest");
         }
         return "index"; //머스테치 스타터->~/templates/index.mustache로 전환해줌
