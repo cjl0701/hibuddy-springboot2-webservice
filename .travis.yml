@@ -4,7 +4,7 @@ jdk:
 
 branches:
   only:
-    -master
+    - master
 
 # Travis CI 서버의 Home
 cache:
@@ -12,11 +12,11 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "./gralew clean build"
+script: "./gradlew clean build"
 
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:
     recipients:
-      - 'cjl2076@naver.com'
+      - cjl2076@naver.com
 
