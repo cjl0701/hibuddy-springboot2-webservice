@@ -12,5 +12,5 @@
 * Backend: Java8(springboot2) / JPA(자바 ORM 표준), Querydsl(조회 프레임워크), DBCP / Spring security, OAUTH2 / Spirng test, JUnit test
 * Frontend: Bootstrap, Javascript, JQuery, Mustache(server template engine)
 * Build tool: gradle 4.2
-* 배포: AWS-EC2/RDS. Travis CI 배포 자동화, 무중단 배포
+* 배포: AWS-EC2/RDS. Travis CI & CodeDeploy로 push시 빌드-배포 자동화, 무중단 배포
 * IDE: IntelliJ IDEA Utilmate
