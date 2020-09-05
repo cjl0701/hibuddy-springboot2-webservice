@@ -46,8 +46,8 @@ public class BuddyService {
         List<UserResponseDto> userResponseDtos = new ArrayList<>();
         for(int i=0;i<originDtos.size();i++){
             String id = originDtos.get(i).getUserId();
+            if (id.equals(userId)) continue;
             for(int j=0;j<buddyList.size();j++) {
-                if (id.equals(userId)) continue;
                 if (id.equals(buddyList.get(j).getBuddyId()))
                     userResponseDtos.add(originDtos.get(i));//친구 정보면 담음
             }
