@@ -42,7 +42,6 @@ public class BuddyService {
     public List<UserResponseDto> findBuddies(String userId) {
         List<BuddyList> buddyList = buddyListRepository.findAllByUserId(userId);
         List<BuddyList> buddyList2 = buddyListRepository.findAllByBuddyId(userId);
-        System.out.println(buddyList2);
         List<UserResponseDto> originDtos = userRepository.findTotalInfo("");//모든 회원 정보
         List<UserResponseDto> userResponseDtos = new ArrayList<>();
         for(int i=0;i<originDtos.size();i++){
