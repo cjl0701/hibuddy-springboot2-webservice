@@ -31,17 +31,23 @@
         <H2>HiBuddy를 통해 같은 관심사를 가진 외국인 친구들을 사귀세요!</H2>
         </p>
     </div>
+{{#user}}
+    {{#guest}}
+            <p style="font-size: x-large; color:lightseagreen; text-align: center;">간단한 회원 가입 후 친구를 찾아보세요!</p>
+    {{/guest}}
+    {{^guest}}
+            <!--친구 사귀기 영역-->
+            <div class="text-center">
+                <a href="/buddy/make" role="button" class="btn btn-outline-primary btn-lg" onclick="alertFunc()">나와 취미가
+                    같은 친구 찾기</a>
+            </div>
+            <br>
 
-    <!--친구 사귀기 영역-->
-    <div class="text-center">
-        <a href="/buddy/make" role="button" class="btn btn-outline-primary btn-lg" onclick="alertFunc()">나와 취미가 같은 친구 찾기</a>
-    </div>
-    <br>
-
-    <!--친구 조회 영역-->
-    <div class="text-center">
-        <a href="/buddy/list" role="button" class="btn btn-outline-success btn-lg">내 친구들 목록</a>
-    </div>
-</div>
-
+            <!--친구 조회 영역-->
+            <div class="text-center">
+                <a href="/buddy/list" role="button" class="btn btn-outline-success btn-lg">내 친구들 목록</a>
+            </div>
+        </div>
+    {{/guest}}
+{{/user}}
 {{>layout/footer}}
