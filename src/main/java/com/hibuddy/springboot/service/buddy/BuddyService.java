@@ -41,11 +41,19 @@ public class BuddyService {
     //친구 리스트 가져오기
     public List<UserResponseDto> findBuddies(String userId) {
         List<BuddyList> buddyList = buddyListRepository.findAllByUserId(userId);
+        List<BuddyList> buddyList2 = buddyListRepository.findAllByBuddyId(userId);
+        System.out.println(buddyList2);
         List<UserResponseDto> originDtos = userRepository.findTotalInfo("");//모든 회원 정보
         List<UserResponseDto> userResponseDtos = new ArrayList<>();
         for(int i=0;i<originDtos.size();i++){
-            for(int j=0;j<buddyList.size();j++)
-                if (originDtos.get(i).getUserId().equals(buddyList.get(j).getBuddyId()))
+            String id = originDtos.get(i).getUserId();
+            for(int j=0;j<buddyList.size();j++) {
+                if (id.equals(userId)) continue;
+                if (id.equals(buddyList.get(j).getBuddyId()))
+                    userResponseDtos.add(originDtos.get(i));//친구 정보면 담음
+            }
+            for(int j=0;j<buddyList2.size();j++)
+                if (id.equals(buddyList2.get(j).getUserId()))
                     userResponseDtos.add(originDtos.get(i));//친구 정보면 담음
         }
         return userResponseDtos;

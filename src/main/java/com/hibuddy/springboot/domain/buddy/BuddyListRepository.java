@@ -9,4 +9,5 @@ import java.util.List;
 // JpaRepository<Entity 클래스, PK타입>를 상속하면 기본적인 CRUD 메소드가 자동 생성됨
 public interface BuddyListRepository  extends JpaRepository<BuddyList, Long> {
     List<BuddyList> findAllByUserId(String userId);
+    List<BuddyList> findAllByBuddyId(String userId);
 }
