@@ -26,7 +26,7 @@ var userInfo = {
             url: '/api/user/info',
             //dataType: 'json', //요청한 데이터 형식. 생략하면 자동으로 자료에 맞게
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(userId)
+            data: userId
         }).done(function (result) {
             if (result === "available")
                 alert('사용 가능한 아이디 입니다.');
