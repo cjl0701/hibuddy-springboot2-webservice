@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserApiController {
     private final UserService userService;
 
-    @GetMapping("/api/user/info/{userId}") //조회(R)
-    public String confirmUserId(@PathVariable String userId){
+    @PostMapping("/api/user/info") //조회(R)
+    public String confirmUserId(@RequestBody String userId){
         if(userService.confirmUserId(userId))
             return "exist";
         else

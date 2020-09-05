@@ -13,6 +13,7 @@ var userInfo = {
             _this.update();
         });
     },
+    //아이디 중복 확인
     confirm: function () {
         var userId = $('#userId').val();
         if (userId === '') {
@@ -20,10 +21,12 @@ var userInfo = {
             return;
         }
         $.ajax({
-            type: 'GET',
-            url: '/api/user/info/' + userId,
+            type: 'POST',
+            async: true,
+            url: '/api/user/info',
             //dataType: 'json', //요청한 데이터 형식. 생략하면 자동으로 자료에 맞게
             contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(userId)
         }).done(function (result) {
             if (result === "available")
                 alert('사용 가능한 아이디 입니다.');
@@ -33,6 +36,7 @@ var userInfo = {
             alert(JSON.stringify(error));
         });
     },
+    //회원 가입
     save: function () {
         var userId = $('#userId').val();
         if (userId === '') {
@@ -41,7 +45,7 @@ var userInfo = {
         }
         var data = {
             userId: userId,
-            name:$('#name').val(),
+            name: $('#name').val(),
             email: $('#email').val(),
             sex: $('#sex').val(),
             age: $('#age').val(),
@@ -56,7 +60,7 @@ var userInfo = {
         console.log(data);
         $.ajax({
             type: 'POST',
-            url:'/api/user/join',
+            url: '/api/user/join',
             //dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
