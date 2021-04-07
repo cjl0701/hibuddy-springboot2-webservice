@@ -46,7 +46,7 @@ MVC 패턴 기반(Model, View, Controller, Service, Repository)
 ![hibuddy 인프라 구조](https://user-images.githubusercontent.com/55947154/113509780-5f34ed00-9592-11eb-8e9e-90dcf73f1189.png)   
 - Github에 push하면 자동으로 EC2 서버로 배포되도록 Travis CI와 AWS CodeDeploy를 적용    
 - 이렇게 하면 업데이트하여 배포할 때 일시적으로 중단되는 이슈가 발생했기 때문에 Nginx의 리버스 프록시 기능을 적용해 무중단 배포
-
+<br>
 
 
 ### 서비스 프로세스   
